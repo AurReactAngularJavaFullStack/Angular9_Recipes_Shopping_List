@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+  <!-- Bootstrap requires a containing element to wrap site contents and house our grid system.
+    You may choose one of two containers to use in your projects. Note that, due to padding and more,
+    neither container is nestable.
+Use .container for a responsive fixed width container.
+<div class="container">
+  ...
+</div>
+Use .container-fluid for a full width container, spanning the entire width of your viewport.
+<div class="container-fluid">
+  ...
+</div> -->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- RouterLink: incorrect relative link if defined in component having empty path #13011. Open
+      When linking to this user/:name route, you use the RouterLink directive.
+      If the link is static, you can use the directive as follows:
+      <a routerLink="/user/bob">link to user component</a> If you use dynamic values to generate the link,
+      you can pass an array of path segments, followed by the params for each segment. -->
+      <a routerLink="/" class="navbar-brand">Recipe Book</a>
+    </div>
+<!-- It means that the inline menu will become a drop down menu when the viewport size is not wide enough to
+  display all the items.
+Inline menu:
+Collapsed menu:
+Bootstrap shows that drop down menu with a button in the right-top corner.
+You'll have to click on it to see the available menu items. -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- The RouterLinkActive is a directive for adding or removing classes from an HTML element
+           that is bound to a RouterLink . Using this directive, we can toggle CSS classes for active
+           Router Links based on the current RouterState .
+           The main use case of this directive is to highlight which route is currently active -->
+        <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+        <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- A dropdown menu is a toggleable menu that allows the user to choose one value 
+          from a predefined list. -->
+        <li class="dropdown" appDropdown>
+          <!-- The cursor is a pointer that indicates a link.Typically an image of a pointing hand. -->
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+            <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

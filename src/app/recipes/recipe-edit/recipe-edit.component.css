@@ -1,0 +1,13 @@
+/* 
+The ng-touched class means the field has been blurred (flouté)
+ng-untouched The field has not been touched yet. 
+ng-touched The field has been touched. 
+ng-pristine The field has not been modified yet.
+*/
+/*Display in red color when the condition of filling are not satisfy 
+for example:minimum of 3 characters & empty textfield
+in this case empty input & text area*/
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewRecipe()">New Recipe</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-recipe-item
+      *ngFor="let recipeEl of recipes; let i = index"
+      [recipe]="recipeEl"
+      [index]="i"></app-recipe-item>
+  </div>
+</div>
+<!--
+  There are 3 ways to define a property binding in Angular:
+  <img src="{{ angularLogo }}">
+  <img [src]="angularLogo">
+  <img bind-src="angularLogo">
+You can use interpolation to define the value, as long as the value you're defining is a string. 
+If it's not, you must use method 2 or 3 below.
+The most common method to define property binding is by wrapping brackets around an element property 
+and binding it to a component property.
+Adding bind- before the element property also achieves the same thing.
+To make this work, we just have to define angularLogo in the component property:
+export class AppComponent {
+  angularLogo = 'https://angular.io/resources/images/logos/angular2/angular.png';
+}
+After saving and running ng serve on the command line, you'll see that the view shows 3 logos, 
+as all 3 img elements work.
+-->
+

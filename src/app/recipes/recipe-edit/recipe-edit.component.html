@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-xs-12">
+    <!-- A FormGroup aggregates the values of each child FormControl into one object, 
+      with each control name as the key. It calculates its status by reducing the status 
+      values of its children. 
+      For example, if one of the controls in a group is invalid, the entire group becomes invalid.
+    The FormGroup is a collection of FormControls It Tracks the value and validity state of a group of FormControl 
+    instances. The FormGroup is one of the building blocks of the angular forms. The other two are FormControl 
+    and FormArray.
+    The FormGroup is just a class. 
+    We create a FormGroup to organize and manage the related elements. 
+    For Example form elements like address, city.state, pin code etc can be grouped together as a single FormGroup. 
+    It makes it easier to manage them
+    -->
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!recipeForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              type="text"
+              id="imagePath"
+              formControlName="imagePath"
+              class="form-control"
+              #imagePath>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="imagePath.value" class="img-responsive">
+        </div>
+      </div>
+      <!-- In Bootstrap, the "row" class is used mainly to hold columns in it. 
+        Bootstrap divides each row into a grid of 12 virtual columns. 
+        In the following example, the col-md-6 div will have the width of 6/12 of the "row"s div, meaning 50%. 
+        The col-md-4 will hold 33.3%, and the col-md-2 will hold the remaining 16.66%.
+        <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-4"></div>
+          <div class="col-md-2"></div>
+        </div> -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <!--<form [formGroup]="profileForm">
+              <label>
+                First Name:
+                <input type="text" formControlName="firstName">
+              </label>
+              <label>
+                Last Name:
+                <input type="text" formControlName="lastName">
+              </label>
+</form>
+Note that just as the FormGroup contains a group of controls, 
+the profileForm FormGroup is bound to the form element with the FormGroup directive, 
+creating a communication layer between the model and the form containing the inputs. 
+The formControlName input provided by the FormControlName directive binds each individual input to the form control 
+defined in the FormGroup-->
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              formControlName="description"
+              rows="6"></textarea>
+              <!-- I believe you missed an important point: 
+                [formGroup] directive in the second example. 
+                formControlName is used together with [formGroup] to save your form multiple dot navigations. 
+              -->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- It accepts the string name of the nested FormArray you want to link, 
+          and will look for a FormArray registered with that name in the parent FormGroup instance 
+          you passed into FormGroupDirective. 
+          
+        -->
+        <div class="col-xs-12" formArrayName="ingredients">
+          <!-- The name corresponds to a key in the parent FormGroup or FormArray. 
+            Accepts a name as a string or a number. 
+            The name in the form of a string is useful for individual forms, 
+            while the numerical form allows for form controls to be bound to indices when iterating over controls 
+            in a FormArray. -->
+          <div
+            class="row"
+            *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-8">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name">
+            </div>
+            <div class="col-xs-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="amount">
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <!--In short, they are used to define at which screen size that class should apply: 
+              xs = extra small screens (mobile phones) 
+              sm = small screens (tablets) md = medium screens (some desktops) 
+              lg = large screens (remaining desktops)-->
+            <div class="col-xs-12">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddIngredient()">Add Ingredient</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<!--You'll see this in all the directives:
+When you use brackets, it means you're passing a bindable property (a variable).
+  <a [routerLink]="routerLinkVariable"></a>
+So this variable (routerLinkVariable) could be defined inside your class 
+and it should have a value like below:
+export class myComponent {
+    public routerLinkVariable = "/home"; // the value of the variable is string!
+
+    But with variables, you have the opportunity to make it dynamic right?
+export class myComponent {
+    public routerLinkVariable = "/home"; // the value of the variable is string!
+    updateRouterLinkVariable(){
+        this.routerLinkVariable = '/about';
+    }
+Where as without brackets you're passing string only and you can't change it, 
+it's hard coded and it'll be like that throughout your app.
+<a routerLink="/home"></a> -->
+<a
+  style="cursor: pointer;"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item clearfix">
+  <!-- Clearfix property clear all the floated content of the element that it is applied to. 
+    It is also used to clear floated content within a container.
+  Bootstrap allows us to use a class named clearfix which is used to clear the floated contents 
+  inside any container.-->
+  <!--The .pull-left and .pull-right classes have been replaced with the .float-left and .float-right classes 
+    in Bootstrap 4. 
+    These utility classes are used to float (move) an element to the left or right on the various viewport sizes 
+    based on the Bootstrap Grid. It works using the CSS float property. -->
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+    <p class="list-group-item-text">{{ recipe.description }}</p>
+  </div>
+  <span class="pull-right">
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-responsive"
+          style="max-height: 50px;">
+      </span>
+</a>
